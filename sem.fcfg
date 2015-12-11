@@ -1,0 +1,56 @@
+% start S
+	# Grammar Productions
+
+# S[SEM=<?np(?vp)>] -> N[BAR=2,SEM=?np] V[BAR=2,SEM=?vp] 
+S ->  N[BAR=2] LV N[BAR=2] | N[BAR=2] V[BAR=2]
+S[SEM=?vp] -> V[BAR=2,SEM=?vp]
+
+N[BAR=2,SEM=?np] -> Det N[BAR=1,SEM=?np] 
+N[BAR=1,SEM=<?adj & ?np>] -> Adj[BAR=2,SEM=?adj] N[BAR=1,SEM=?np] 
+N[BAR=1,SEM=<?np & ?pp>] -> N[BAR=1, SEM=?np] P[BAR=2,SEM=?pp] 
+N[BAR=1] -> N[BAR=0] Adj[BAR=2]
+
+N[BAR=2,SEM=?np] -> N[BAR=1,SEM=?np]
+N[BAR=1,SEM=?np] -> N[BAR=0,SEM=?np]
+
+V[BAR=2] -> Adv V[BAR=1] 
+V[BAR=2,SEM=<?vp(?np)>] -> V[BAR=1,SEM=?vp] N[BAR=2,SEM=?np] 
+V[BAR=2, SEM=?vp] -> V[BAR=1,SEM=?vp]
+V[BAR=1,SEM=?vp] -> V[BAR=0,SEM=?vp]
+
+P[BAR=2, SEM=?np] -> Prep N[BAR=2, SEM=?np]
+
+Adj[BAR=2] -> C[BAR=2]
+Adj[BAR=2,SEM=?adj] -> Adj[BAR=1,SEM=?adj]
+Adj[BAR=1, SEM=?adj] -> Adj[BAR=0, SEM=?adj]
+
+C[BAR=2] -> Complementizer N[BAR=2] | Complementizer S 
+
+# Lexical Productions
+Prep -> 'with' | 'of' | 'in' | 'down' 
+Det -> 'a'
+Complementizer -> 'complicated_by' | 'that'
+Adj[BAR=0, SEM=<\x.33_year_old(x)>] -> '33_year_old' 
+Adj[BAR=0, SEM=<\x.coronary(x)>] -> 'coronary' 
+Adj[BAR=0, SEM=<\x.3(x)>]  -> '3' 
+Adj[BAR=0, SEM=<\x.crushing(x)>] -> 'crushing' 
+Adj[BAR=0, SEM=<\x.chest(x)>]  -> 'chest' 
+Adj[BAR=0, SEM=<\x.6_out_of_10(x)>] -> '6/10' 
+Adj[BAR=0, SEM=<\x.his(x)>] -> 'his' 
+N[BAR=0,SEM=<\x.man(x)>] -> 'man' 
+N[BAR=0,SEM=<\x.history(x)>] -> 'history' 
+N[BAR=0,SEM=<\x.disease(x)>] -> 'disease' 
+N[BAR=0,SEM=<\x.artery(x)>] ->  'artery' 
+N[BAR=0,SEM=<\x.coronary_artery_bypass_graft(x)>] -> 'coronary_artery_bypass_graft' 
+N[BAR=0,SEM=<\x.2010(x)>] -> '2010' 
+N[BAR=0,SEM=<\x.coronary_artery_disease(x)>] -> 'coronary_artery_disease' 
+N[BAR=0,SEM=<\x.days(x)>,NUM=pl] -> 'days'
+N[BAR=0,SEM=<\x.pain(x)>] -> 'pain' 
+N[BAR=0,SEM=<\x.arm(x)>] ->  'arm' 
+N[BAR=0,SEM=<\x.shortness_of_breath(x)>] -> 'shortness_of_breath' 
+N[BAR=0,SEM=<\x.diaphoresis(x)>] -> 'diaphoresis'
+
+V[BAR=0,SEM=<\P.P(x)>] -> 'there_is'
+V[BAR=0,SEM=<-\P.P(x)>] -> 'there_is_no'
+V[BAR=0,SEM=<\x.presents_with(x)>] -> 'presents_with' 
+V[BAR=0,SEM=<\x.radiates(x)>] -> 'radiates'
