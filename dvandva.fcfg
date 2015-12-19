@@ -1,0 +1,22 @@
+% start N
+
+N[BAR=2,SEM=<\x.(?adj(x) & ?np(x))>] -> A[BAR=2,SEM=?adj] N[BAR=1,SEM=?np]
+N[BAR=2,SEM=<?np(?pp)>] -> N[BAR=2,SEM=?np] PP[BAR=2,SEM=?pp] 
+
+A[BAR=2,SEM=<\x.(?adj(x) & ?np(x))>] -> A[BAR=1,SEM=?adj] N[BAR=2,SEM=?np]
+A[BAR=1,SEM=?adj] -> A[BAR=0,SEM=?adj]
+
+PP[BAR=2,SEM=<?prep(?np)>] -> P[BAR=1,SEM=?prep] N[BAR=2,SEM=?np]
+P[BAR=1,SEM=?pp] -> P[BAR=0,SEM=?pp]
+
+
+N[BAR=2,SEM=?np] -> N[BAR=1,SEM=?np]
+N[BAR=2] -> N[BAR=1] N[BAR=0]
+N[BAR=1,SEM=?np] -> N[BAR=0,SEM=?np]
+
+A[BAR=0,SEM=<\x.in_heart(x)>] -> 'coronary'
+N[BAR=0,SEM=<\x.artery(x)>] -> 'artery' 
+N[BAR=0,SEM=<\x.disease(x)>] -> 'disease'
+N[BAR=0,SEM=<\x.history(x)>] -> 'history'
+
+P[BAR=0,SEM=<\P.P(x)>] -> 'of'
