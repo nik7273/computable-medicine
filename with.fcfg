@@ -1,0 +1,36 @@
+
+% start N
+
+#Using Cooper storage
+#"a man with a disease"
+#"man presents with chest pain"
+#"A nice steak with a bottle"
+# "a nice steak with a bottle of red wine"
+# "a flower-sprigged blouse with a white collar" 
+# "cut the fish with a knife" 
+# "a row broke out with another man"
+# "the people shouted with pleasure"
+# "leave it with me"
+# "my father will be angry with me" 
+# "he's in bed with the flu" 
+# "he was trembling with fear" 
+# "she's with the Inland Revenue now"  
+# "I bank with the TSB"
+# "marine mammals generally swim with the current"
+# "to part with one's dearest possessions"
+
+#"cut the fish with a knife"
+
+N[BAR=2, SEM=<?np(?pp)>] -> N[BAR=1, SEM=?np] P[SEM=?pp]
+N[BAR=1,SEM=<?det(?np)>] -> Det[SEM=?det] N[BAR=1,SEM=?np]
+N[BAR=1, SEM=?np,abstract=?a] -> N[BAR=0,SEM=?np,abstract=?a]
+N[BAR=0, SEM=<\x.man(x)>] -> 'man'
+N[BAR=1, SEM=<\X.X(?conj(?np1,?np2))>] -> N[BAR=0,SEM=?np1] Conj[SEM=?conj] N[BAR=0,SEM=?np2]
+
+P[SEM=<?pp(?np)>, abstract=?a] -> Prep[SEM=?pp,abstract=?a] N[BAR=1,SEM=?np,abstract=?a]
+N[+abstract,BAR=0,SEM=<\x.coronary_artery_disease(x)>] -> 'coronary_artery_disease'
+N[+abstract,BAR=0,SEM=<\x.stroke(x)>] -> 'stroke'
+Prep[+abstract, SEM=<\Y y.(Y(has(y)))>] -> 'with'
+Prep[-abstract, SEM=<\Y y.(Y(near(y)))>] -> 'with'
+Det[NUM=sg,SEM=<\P Q.exists x.(P(x) & Q(x))>] -> 'a'
+Conj[SEM=<\P Q x.(P(x) & Q(x))>] -> 'and'
