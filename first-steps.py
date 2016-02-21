@@ -25,6 +25,6 @@ snippet_1 = "A 33 year_old man with a history of coronary_artery_disease complic
 snippet_2 = "There_is_no associated shortness_of_breath".lower().split()
 snippet_3 = "There_is diaphoresis".lower().split()
 parser = nltk.RecursiveDescentParser(grammar)
-for tree in parser.parse(snippet_3):
+for tree in parser.parse(snippet_1):
 	tree.draw()
 
