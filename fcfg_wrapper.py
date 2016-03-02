@@ -5,6 +5,10 @@ def make_noun(noun,bar=0):
     else:
         return ["N[BAR=%d,SEM=[CORE=?n,STORE=?b1]] -> N[BAR=%d,SEM=[CORE=?n,STORE=?b1]]"%(bar,bar-1)] + make_noun(noun,bar-1)
 
+def make_preposition(prep,bar=0):
+    if bar == 0:
+        return ["P[BAR=%d, SEM=[CORE=<%s>, STORE=(/)]] -> '%s'" % (bar, prep, prep)]
+
 
 def make_adjective(adjective,bar=0):
     if bar == 0:
