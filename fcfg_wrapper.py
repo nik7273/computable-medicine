@@ -1,3 +1,11 @@
+###Having methods return none in else case for now, no particular reason besides as a placeholder
+
+#not sure if this is good because this makes verb type into a feature rather than its own type of lambda function
+def make_verb(verb,verb_type,bar=0):
+    if bar == 0: 
+        return ["V[BAR=%d,SEM=[CORE=<%s>,STORE=(/)],TYPE=%s] -> '%s'" %(bar,verb,verb,verb_type)]
+    else:
+        return None
 
 def make_noun(noun,bar=0):
     if bar == 0: # Sure it's a terminal
@@ -5,14 +13,24 @@ def make_noun(noun,bar=0):
     else:
         return ["N[BAR=%d,SEM=[CORE=?n,STORE=?b1]] -> N[BAR=%d,SEM=[CORE=?n,STORE=?b1]]"%(bar,bar-1)] + make_noun(noun,bar-1)
 
-def make_preposition(prep,bar=0):
+def make_preposition(prep,usage_features,bar=0):
     if bar == 0:
-        return ["P[BAR=%d, SEM=[CORE=<%s>, STORE=(/)]] -> '%s'" % (bar, prep, prep)]
+        initial_lambda = ["P[BAR=%d, SEM=[CORE=<%s>, STORE=(/) -> '%s'" % (bar, prep, prep)]
+        usages = ""
+        for feature in usage_features:
+            usages += feature + ","
+        return initial_lambda + usages
+    else:
+        return None 
+        #type raising??
+
 
 
 def make_adjective(adjective,bar=0):
     if bar == 0:
         return ["A[BAR=%d,SEM=[CORE=<%s>,STORE=(/)]] -> '%s'"%(bar,adjective, adjective)]
+    else:
+        return None
 
     # What if higher bar?
 
