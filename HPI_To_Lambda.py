@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
+
+#HPI=> Lambda functions
+
+import fcfg_wrapper as wrap
 import nltk
 
-from nltk import Tree
-from nltk.draw.util import CanvasFrame
-from nltk.draw import TreeWidget
-
+#example
 grammar = nltk.CFG.fromstring("""
 	S -> NP VP | VP  | NP LV NP
 	VP -> V NP | V | V NP NP | V PP 
@@ -19,13 +21,15 @@ grammar = nltk.CFG.fromstring("""
 	N -> 'man' | 'history' | 'disease' | 'artery' | 'coronary_artery_bypass_graft' | '2010' | 'coronary_artery_disease' | 'days' | 'pain' | 'arm' | 'shortness' | 'breath' | 'shortness_of_breath' | 'diaphoresis'
 	V -> 'presents_with' | 'radiates' | 'there_is' | 'there_is_no'
 	""")
-
 hpi = " A 33 year-old man with a past medical history of coronary artery disease (coronary artery bypass graft in 2010) presents with 3 days of crushing 6/10 chest pain that radiates down his left arm. There is no associated shortness of breath. There is diaphoresis. "
 snippet_1 = "A 33 year_old man with a history of coronary_artery_disease complicated_by coronary_artery_bypass_graft in 2010 presents_with 3 days of crushing 6/10 chest pain that radiates down his arm".lower().split()
 snippet_2 = "There_is_no associated shortness_of_breath".lower().split()
 snippet_3 = "There_is diaphoresis".lower().split()
-parser = nltk.RecursiveDescentParser(grammar)
-for tree in parser.parse(snippet_1):
-	tree.draw()
 
+
+def lambda_generator():
+    lambda_functions = []
+    for token in hpi.lower().split():
+        #add lambda functions for each element of the hpi
+    return lambda_functions
 
