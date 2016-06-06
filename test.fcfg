@@ -1,2 +1,11 @@
 % start N
 
+N[BAR=2,SEM=[CORE=?n,STORE=?b1]] -> N[BAR=1,SEM=[CORE=?n,STORE=?b1]]
+N[BAR=1,SEM=[CORE=?n,STORE=?b1]] -> N[BAR=0,SEM=[CORE=?n,STORE=?b1]]
+N[BAR=0,SEM=[CORE=<bob>,STORE=(/)]] -> 'bob'
+A[BAR=0,SEM=[CORE=<brillig>,STORE=(/)]] -> 'brillig'
+N[BAR=2,SEM=[CORE=?n,STORE=?b1]] -> N[BAR=1,SEM=[CORE=?n,STORE=?b1]]
+N[BAR=1,SEM=[CORE=?n,STORE=?b1]] -> N[BAR=0,SEM=[CORE=?n,STORE=?b1]]
+N[BAR=0,SEM=[CORE=<bob>,STORE=(/)]] -> 'bob'
+A[BAR=0,SEM=[CORE=<brillig>,STORE=(/)]] -> 'brillig'
+["N[BAR=0,SEM=[CORE=<dan>,STORE=(/)]] -> 'dan'"]

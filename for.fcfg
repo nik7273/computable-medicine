@@ -1,0 +1,46 @@
+#example sentences:
+#The man had a fever for 3 days
+#you give him alpha for beta
+#I go for you
+#This is for moving
+
+%start S
+
+S[SEM=<?vp(?pp)>] -> V[BAR=2, SEM=?vp] P[BAR=2, SEM=?pp]
+
+V[BAR=2, SEM=<?vp(?np)>] -> V[BAR=1, SEM=?vp] N[BAR=2, SEM=?np]
+V[BAR=2, SEM=<?vp(?np)>] -> V[BAR=1, SEM=?vp] N[BAR=2, SEM=?np] 
+V[BAR=1, SEM=?vp] -> V[BAR=0, SEM=?vp] N[BAR=0]
+V[BAR=1, SEM=?vp] -> V[BAR=0, SEM=?vp]
+V[BAR=0, SEM=<\P.P(x)>] -> 'had'
+V[BAR=0, SEM=<\P.P(x)>] -> 'give'
+V[BAR=0, SEM=<\P.P(x)>] -> 'is'
+V[BAR=0, SEM=<\P.P(x)>] -> 'moving'
+
+N[BAR=2, SEM=?np] -> Det N[BAR=1, SEM=?np]
+N[BAR=2, SEM=?np] -> N[BAR=1, SEM=?np]
+N[BAR=1, SEM=?np] -> N[BAR=0, SEM=?np]
+
+P[BAR=2, SEM=<?pp(?np)>, temporal=?t] -> P[BAR=1, SEM=?pp, temporal=?t] N[BAR=2, SEM=?np]
+P[BAR=2, SEM=<?pp(?np)>, exchange=?e] -> N[BAR=2, SEM=?np] P[BAR=1, SEM=?pp]
+P[BAR=2, SEM=?pp, benefit=?b] -> P[BAR=1, SEM=?pp, benefit=?b]
+P[BAR=2, SEM=?pp, instrumental=?i] -> P[BAR=1, SEM=?pp, instrumental=?i]
+P[BAR=1, SEM=<?pp(?np)>, temporal=?t] -> P[BAR=0, SEM=?pp, temporal=?t] Adj N[BAR=2, SEM=?np]
+P[BAR=1, SEM=<?pp(?np)>, exchange=?e, benefit=?b] -> P[BAR=0, SEM=?pp] N[BAR=0, SEM=?np]
+P[BAR=1, SEM=<?pp(?vp)>] -> P[BAR=0, SEM=?pp, instrumental=?i] V[BAR=0, SEM=?vp]
+
+P[+temporal, -instrumental, -exchange, -benefit, BAR=0, SEM=<\Y y.(Y(during(y)))>] -> 'for'
+P[-temporal, +instrumental, -exchange, -benefit, BAR=0, SEM=<\Y y.(Y(usedIn(y)))>] -> 'for'
+P[-temporal, -instrumental, +exchange, -benefit, BAR=0, SEM=<\Y y.(Y(give(y)))>] -> 'for'
+P[-temporal, -instrumental, -exchange, +benefit, BAR=0, SEM=<\Y y.(Y(toHelp(y)))>] -> 'for'
+
+Adj -> '3'
+Det -> 'the' | 'a'
+
+N[BAR=0, SEM=<\x.man(x)>] -> 'man'
+N[BAR=0, SEM=<\x.fever(x)>] -> 'fever'
+N[BAR=0, SEM=<\x.you(x)>] -> 'you'
+N[BAR=0, SEM=<\x.him(x)>] -> 'him'
+N[BAR=0, SEM=<\x.alpha(x)>] -> 'alpha'
+N[BAR=0, SEM=<\x.beta(x)>] -> 'beta'
+N[BAR=0, SEM=<\x.this(x)>] -> 'this'
