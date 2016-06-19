@@ -26,10 +26,12 @@ snippet_1 = "A 33 year_old man with a history of coronary_artery_disease complic
 snippet_2 = "There_is_no associated shortness_of_breath".lower().split()
 snippet_3 = "There_is diaphoresis".lower().split()
 
-
+#incomplete: figure out how to check if term is verb, noun, adj, prep, etc.
 def lambda_generator():
     lambda_functions = []
     for token in hpi.lower().split():
         #add lambda functions for each element of the hpi
+        wrap.make_noun(token) #example operation
     return lambda_functions
+
 
