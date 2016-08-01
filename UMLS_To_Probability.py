@@ -10,8 +10,10 @@ def probability_generator():
     for concept in UMLS:
         if prior_probabilities[str(concept)] != '':
             #bayesian equation, add posterior probability to dict.
+            posterior_probabilities[str(concept)] = posterior_probabilities[str(prior_probabilities[str(concept)])] * prior_probabilities[str(concept)] / prior_probabilities[str(prior_probabilities[str(concept)])]
         else:
             posterior_probabilities[str(concept)] = 1 #random number for now, proof of concept
     
     return posterior_probabilities
     
+
