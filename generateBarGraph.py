@@ -3,6 +3,8 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
+import pandas as pd 
 
 D = {'A':{'x':0.5,'y':0.4,'z':0.3,'general':0.1},
      'B':{'x':0.75,'y':0.65,'z':0.45,'general':0.2},
@@ -13,7 +15,39 @@ D = {'A':{'x':0.5,'y':0.4,'z':0.3,'general':0.1},
 def posterior(disease,symptom):
     return D[disease][symptom] * D['gen'][symptom] / D[disease]['general']
 
+database = {'x':{'A':0.5,'B':0.4,'C':0.3,'unconditional':0.1},
+     'y':{'A':0.75,'B':0.65,'C':0.45,'unconditional':0.2},
+     'z':{'A':0.25,'B':0.15,'C':0.2,'unconditional':0.1},
+     'A':{'unconditional':0.1},
+     'B':{'unconditional':0.2},
+     'C':{'unconditional':0.3}}
 
+#Create data table
+diseases = ['A','B','C']
+symptoms = ['x','y','z']
+
+probabilities = np.zeros((len(diseases),len(symptoms)))
+
+#Conditional probabilities
+for i,disease in enumerate(diseases):
+	for j,symptom in enumerate(symptoms):
+		probabilities[j,i] = database[symptom][disease] * database[disease]['unconditional']/database[symptom]['unconditional']
+
+
+conditional_probabilities = np.prod(probabilities, axis=1)
+df = pd.DataFrame(np.c_[[conditional_probabilities,
+	[database[disease]['unconditional'] for disease in diseases]]],
+	index=['prior','posterior'],columns = diseases)
+
+print df
+
+df = pd.read_csv('./sample_dataframe.csv')
+print df 
+
+ax = sns.barplot(data=df, x='disease', y='probability', hue='type')
+plt.show()
+
+'''
 xDependent = [posterior(disease,'x') for disease in D]
 yDependent = [posterior(disease, 'y') for disease in D]
 zDependent = [posterior(disease,'z') for disease in D]
@@ -45,4 +79,5 @@ autolabel(yBar)
 autolabel(zBar)"""
 plt.suptitle("Posterior and Prior Probabilities of Diseases using Bayes' Theorem")
 plt.show()
-plt.savefig("Posterior_prior_bar_graph")
+#plt.savefig("Posterior_prior_bar_graph")
+'''
