@@ -1,0 +1,3 @@
+[submodule "cmx.js"]
+	path = cmx.js
+	url = https://github.com/mac389/cmx.js.git

@@ -45,7 +45,7 @@ df = pd.read_csv('./sample_dataframe.csv')
 print df 
 
 ax = sns.barplot(data=df, x='disease', y='probability', hue='type')
-plt.show()
+plt.savefig('./sample-bar-graph.png')
 
 '''
 xDependent = [posterior(disease,'x') for disease in D]
